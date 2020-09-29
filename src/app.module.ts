@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModel } from './user/user.model';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -18,7 +19,7 @@ import { UserModule } from './user/user.module';
       username: 'root',
       password: '',
       database: 'nestjs-sample',
-      entities: ['src/**/*.model.ts'],
+      entities: [UserModel],
       synchronize: false,
     }),
     UserModule,
