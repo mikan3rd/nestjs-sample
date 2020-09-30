@@ -2,18 +2,18 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
-import { UserDTO } from "../dto/user.dto";
-import { UserModel } from "../models/user.model";
+import { AccountDTO } from "../dto/account.dto";
+import { AccountModel } from "../models/account.model";
 
 @Injectable()
-export class UserService {
+export class AccountService {
   constructor(
-    @InjectRepository(UserModel)
-    private userRepository: Repository<UserModel>,
+    @InjectRepository(AccountModel)
+    private userRepository: Repository<AccountModel>,
   ) {}
 
-  create(details: UserDTO) {
-    return this.userRepository.save(details);
+  create(payload: AccountDTO) {
+    return this.userRepository.save({ ...payload });
   }
 
   findAll() {

@@ -2,9 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type UserModel {
+type AccountModel {
   id: Float!
-  title: String!
+  profileName: String!
+  username: String!
+  thumbnailUrl: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -15,10 +17,16 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  user(id: Float!): UserModel!
-  users: [UserModel!]!
+  account(id: Float!): AccountModel!
+  accounts: [AccountModel!]!
 }
 
 type Mutation {
-  createUser(title: String!): UserModel!
+  createAccount(account: AccountDTO!): AccountModel!
+}
+
+input AccountDTO {
+  profileName: String!
+  username: String!
+  thumbnailUrl: String!
 }

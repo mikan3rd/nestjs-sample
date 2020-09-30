@@ -2,15 +2,23 @@ import { Field, ObjectType } from "@nestjs/graphql";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @ObjectType()
-@Entity("users")
-export class UserModel {
+@Entity("accounts")
+export class AccountModel {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field()
   @Column()
-  title: string;
+  profileName: string; // 表示用の名前
+
+  @Field()
+  @Column()
+  username: string; // URLなどに使用する半角英数字
+
+  @Field()
+  @Column({ type: "text" })
+  thumbnailUrl: string;
 
   @Field()
   @CreateDateColumn()
