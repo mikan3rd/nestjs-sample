@@ -1,8 +1,8 @@
 import { Inject } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 
-import { UserModel } from "./user.model";
-import { UserService } from "./user.service";
+import { UserModel } from "../models/user.model";
+import { UserService } from "../services/user.service";
 
 @Resolver(of => UserModel)
 export class UserResolver {

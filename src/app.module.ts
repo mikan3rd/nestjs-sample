@@ -1,13 +1,15 @@
 import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { AppService } from "./app.service";
-import { UserModel } from "./user/user.model";
-import { UserModule } from "./user/user.module";
+import { UserModel } from "./models/user.model";
+import { InstagramModule } from "./modules/instagram.module";
+import { UserModule } from "./modules/user.module";
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRoot({
       autoSchemaFile: "schema.gql",
     }),
@@ -22,7 +24,8 @@ import { UserModule } from "./user/user.module";
       synchronize: false,
     }),
     UserModule,
+    InstagramModule,
   ],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}
