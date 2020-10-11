@@ -4,6 +4,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { AccountModel } from "./models/account.model";
+import { YoutubeChannelModel } from "./models/youtubeChannel.model";
 import { AccountModule } from "./modules/account.module";
 import { InstagramModule } from "./modules/instagram.module";
 
@@ -20,7 +21,7 @@ import { InstagramModule } from "./modules/instagram.module";
       username: "root",
       password: "",
       database: "nestjs-sample",
-      entities: [AccountModel],
+      entities: [AccountModel, YoutubeChannelModel],
       synchronize: false,
     }),
     AccountModule,

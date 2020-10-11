@@ -2,6 +2,18 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type YoutubeChannelModel {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  account: AccountModel!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type AccountModel {
   id: Float!
   profileName: String!
@@ -9,12 +21,8 @@ type AccountModel {
   thumbnailUrl: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  youtubeChannels: [YoutubeChannelModel!]!
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type Query {
   account(id: Float!): AccountModel!
