@@ -20,10 +20,10 @@ export class YoutubeService {
   }
 
   findAllChannel() {
-    return this.youtubeRepository.find();
+    return this.youtubeRepository.find({ relations: ["account"] });
   }
 
   findOneChannel(id: number) {
-    return this.youtubeRepository.findOne(id);
+    return this.youtubeRepository.findOne(id, { relations: ["account"] });
   }
 }

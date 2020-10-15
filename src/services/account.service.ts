@@ -17,10 +17,10 @@ export class AccountService {
   }
 
   findAll() {
-    return this.accountRepository.find();
+    return this.accountRepository.find({ relations: ["youtubeChannels"] });
   }
 
   findOne(id: number) {
-    return this.accountRepository.findOne(id);
+    return this.accountRepository.findOne(id, { relations: ["youtubeChannels"] });
   }
 }
