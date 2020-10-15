@@ -7,6 +7,7 @@ import { AccountModel } from "./models/account.model";
 import { YoutubeChannelModel } from "./models/youtubeChannel.model";
 import { AccountModule } from "./modules/account.module";
 import { InstagramModule } from "./modules/instagram.module";
+import { YoutubeModule } from "./modules/youtube.module";
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { InstagramModule } from "./modules/instagram.module";
       synchronize: false,
     }),
     AccountModule,
+    YoutubeModule,
     InstagramModule,
   ],
   providers: [],

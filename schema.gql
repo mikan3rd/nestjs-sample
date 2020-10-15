@@ -4,6 +4,7 @@
 
 type YoutubeChannelModel {
   id: Float!
+  channelId: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   account: AccountModel!
@@ -27,14 +28,22 @@ type AccountModel {
 type Query {
   account(id: Float!): AccountModel!
   accounts: [AccountModel!]!
+  youtubeChannel(id: Float!): YoutubeChannelModel!
+  youtubeChannels: [YoutubeChannelModel!]!
 }
 
 type Mutation {
   createAccount(account: AccountDTO!): AccountModel!
+  createYoutubeChannel(youtubeChannel: YoutubeChannelDTO!): YoutubeChannelModel!
 }
 
 input AccountDTO {
   profileName: String!
   username: String!
   thumbnailUrl: String!
+}
+
+input YoutubeChannelDTO {
+  accountId: Float!
+  channelId: String!
 }

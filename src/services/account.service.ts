@@ -9,18 +9,18 @@ import { AccountModel } from "../models/account.model";
 export class AccountService {
   constructor(
     @InjectRepository(AccountModel)
-    private userRepository: Repository<AccountModel>,
+    private accountRepository: Repository<AccountModel>,
   ) {}
 
   create(payload: AccountDTO) {
-    return this.userRepository.save({ ...payload });
+    return this.accountRepository.save({ ...payload });
   }
 
   findAll() {
-    return this.userRepository.find();
+    return this.accountRepository.find();
   }
 
   findOne(id: number) {
-    return this.userRepository.findOne(id);
+    return this.accountRepository.findOne(id);
   }
 }
