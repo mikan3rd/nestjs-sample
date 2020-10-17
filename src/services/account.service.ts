@@ -12,7 +12,7 @@ export class AccountService {
     private accountRepository: Repository<AccountModel>,
   ) {}
 
-  create(payload: AccountDTO) {
+  save(payload: AccountDTO) {
     return this.accountRepository.save({ ...payload });
   }
 

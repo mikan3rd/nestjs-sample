@@ -33,17 +33,19 @@ type Query {
 }
 
 type Mutation {
-  createAccount(account: AccountDTO!): AccountModel!
-  createYoutubeChannel(youtubeChannel: YoutubeChannelDTO!): YoutubeChannelModel!
+  saveAccount(account: AccountDTO!): AccountModel!
+  saveYoutubeChannel(youtubeChannel: YoutubeChannelDTO!): YoutubeChannelModel!
 }
 
 input AccountDTO {
+  id: Float
   profileName: String!
   username: String!
   thumbnailUrl: String!
 }
 
 input YoutubeChannelDTO {
+  id: Float
   accountId: Float!
   channelId: String!
 }

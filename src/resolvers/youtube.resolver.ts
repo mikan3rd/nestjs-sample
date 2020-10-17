@@ -20,7 +20,7 @@ export class YoutubetResolver {
   }
 
   @Mutation(returns => YoutubeChannelModel)
-  async createYoutubeChannel(@Args("youtubeChannel") youtubeChannel: YoutubeChannelDTO) {
-    return await this.accountService.createChannel(youtubeChannel);
+  async saveYoutubeChannel(@Args("youtubeChannel") youtubeChannel: YoutubeChannelDTO) {
+    return await this.accountService.saveChannel(youtubeChannel);
   }
 }

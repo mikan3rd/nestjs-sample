@@ -14,7 +14,7 @@ export class YoutubeService {
     private accountService: AccountService,
   ) {}
 
-  async createChannel(payload: YoutubeChannelDTO) {
+  async saveChannel(payload: YoutubeChannelDTO) {
     const account = await this.accountService.findOne(payload.accountId);
     return this.youtubeRepository.save({ ...payload, account });
   }

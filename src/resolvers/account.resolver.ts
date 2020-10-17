@@ -20,7 +20,7 @@ export class AccountResolver {
   }
 
   @Mutation(returns => AccountModel)
-  async createAccount(@Args("account") account: AccountDTO) {
-    return await this.accountService.create(account);
+  async saveAccount(@Args("account") account: AccountDTO) {
+    return await this.accountService.save(account);
   }
 }
