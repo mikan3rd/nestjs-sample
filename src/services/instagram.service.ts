@@ -95,7 +95,7 @@ export class InstagramService {
 
     console.log(JSON.stringify(formattedUser));
 
-    const mediaDataList: InstagramMediaType[] = edge_owner_to_timeline_media.edges.map(edge => edge.node);
+    const mediaDataList: InstagramMediaType[] = edge_owner_to_timeline_media.edges.map((edge) => edge.node);
 
     return { userData: formattedUser, mediaDataList };
   }
