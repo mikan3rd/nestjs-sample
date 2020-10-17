@@ -3,9 +3,11 @@ import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { UserModel } from "./models/user.model";
+import { AccountModel } from "./models/account.model";
+import { YoutubeChannelModel } from "./models/youtubeChannel.model";
+import { AccountModule } from "./modules/account.module";
 import { InstagramModule } from "./modules/instagram.module";
-import { UserModule } from "./modules/user.module";
+import { YoutubeModule } from "./modules/youtube.module";
 
 @Module({
   imports: [
@@ -20,10 +22,11 @@ import { UserModule } from "./modules/user.module";
       username: "root",
       password: "",
       database: "nestjs-sample",
-      entities: [UserModel],
+      entities: [AccountModel, YoutubeChannelModel],
       synchronize: false,
     }),
-    UserModule,
+    AccountModule,
+    YoutubeModule,
     InstagramModule,
   ],
   providers: [],
