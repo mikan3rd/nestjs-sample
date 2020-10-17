@@ -22,11 +22,7 @@ export class YoutubeChannelModel {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Field(type => AccountModel)
-  @ManyToOne(
-    type => AccountModel,
-    account => account.youtubeChannels,
-    { nullable: false },
-  )
+  @Field((type) => AccountModel)
+  @ManyToOne((type) => AccountModel, (account) => account.youtubeChannels, { nullable: false })
   account: AccountModel;
 }

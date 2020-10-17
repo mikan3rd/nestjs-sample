@@ -30,10 +30,7 @@ export class AccountModel {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Field(type => [YoutubeChannelModel], { defaultValue: [] })
-  @OneToMany(
-    type => YoutubeChannelModel,
-    youtubeChannel => youtubeChannel.account,
-  )
+  @Field((type) => [YoutubeChannelModel], { defaultValue: [] })
+  @OneToMany((type) => YoutubeChannelModel, (youtubeChannel) => youtubeChannel.account)
   youtubeChannels: YoutubeChannelModel[];
 }
