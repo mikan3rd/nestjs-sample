@@ -2,18 +2,25 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type YoutubeChannelModel {
-  id: Float!
-  channelId: String!
+type YoutubeVideoModel {
+  serviceId: String!
   createdAt: DateTime!
   updatedAt: DateTime!
-  account: AccountModel!
+  channel: YoutubeChannelModel!
 }
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+type YoutubeChannelModel {
+  serviceId: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  account: AccountModel!
+  youtubeVideos: [YoutubeVideoModel!]!
+}
 
 type AccountModel {
   id: Float!
@@ -28,14 +35,18 @@ type AccountModel {
 type Query {
   account(id: Float!): AccountModel
   accounts: [AccountModel!]!
-  youtubeChannel(id: Float!): YoutubeChannelModel
+  youtubeChannel(serviceId: String!): YoutubeChannelModel
   youtubeChannels: [YoutubeChannelModel!]!
+  youtubeVideo(id: String!): YoutubeVideoModel
+  youtubeVideos: [YoutubeVideoModel!]!
 }
 
 type Mutation {
   saveAccount(account: AccountDTO!): AccountModel!
-  deleteYoutubeChannel(id: Float!): YoutubeChannelModel
+  deleteYoutubeChannel(serviceId: String!): YoutubeChannelModel
   saveYoutubeChannel(youtubeChannel: YoutubeChannelDTO!): YoutubeChannelModel!
+  saveYoutubeVideo(youtubeVideo: YoutubeVideoDTO!): YoutubeVideoModel!
+  deleteYoutubeVideo(serviceId: String!): YoutubeVideoModel
 }
 
 input AccountDTO {
@@ -46,7 +57,11 @@ input AccountDTO {
 }
 
 input YoutubeChannelDTO {
-  id: Float
+  serviceId: String!
   accountId: Float!
+}
+
+input YoutubeVideoDTO {
+  serviceId: String
   channelId: String!
 }
