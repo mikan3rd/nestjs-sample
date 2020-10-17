@@ -7,20 +7,25 @@ import { YoutubeService } from "../services/youtube.service";
 
 @Resolver(of => YoutubeChannelModel)
 export class YoutubetResolver {
-  constructor(@Inject(YoutubeService) private accountService: YoutubeService) {}
+  constructor(@Inject(YoutubeService) private youtubeService: YoutubeService) {}
 
-  @Query(returns => YoutubeChannelModel)
+  @Query(returns => YoutubeChannelModel, { nullable: true })
   async youtubeChannel(@Args("id") id: number) {
-    return await this.accountService.findOneChannel(id);
+    return await this.youtubeService.findOneChannel(id);
   }
 
   @Query(returns => [YoutubeChannelModel])
   async youtubeChannels() {
-    return await this.accountService.findAllChannel();
+    return await this.youtubeService.findAllChannel();
   }
 
   @Mutation(returns => YoutubeChannelModel)
   async saveYoutubeChannel(@Args("youtubeChannel") youtubeChannel: YoutubeChannelDTO) {
-    return await this.accountService.saveChannel(youtubeChannel);
+    return await this.youtubeService.saveChannel(youtubeChannel);
+  }
+
+  @Mutation(returns => YoutubeChannelModel, { nullable: true })
+  async deleteYoutubeChannel(@Args("id") id: number) {
+    return await this.youtubeService.deleteChannel(id);
   }
 }

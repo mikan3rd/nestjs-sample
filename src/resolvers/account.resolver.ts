@@ -9,7 +9,7 @@ import { AccountService } from "../services/account.service";
 export class AccountResolver {
   constructor(@Inject(AccountService) private accountService: AccountService) {}
 
-  @Query(returns => AccountModel)
+  @Query(returns => AccountModel, { nullable: true })
   async account(@Args("id") id: number) {
     return await this.accountService.findOne(id);
   }
@@ -22,5 +22,10 @@ export class AccountResolver {
   @Mutation(returns => AccountModel)
   async saveAccount(@Args("account") account: AccountDTO) {
     return await this.accountService.save(account);
+  }
+
+  @Mutation(returns => AccountModel, { nullable: true })
+  async deleteYoutubeChannel(@Args("id") id: number) {
+    return await this.accountService.delete(id);
   }
 }

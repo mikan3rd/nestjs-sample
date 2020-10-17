@@ -14,16 +14,22 @@ export class YoutubeService {
     private accountService: AccountService,
   ) {}
 
+  async findOneChannel(id: number) {
+    return await this.youtubeRepository.findOne(id, { relations: ["account"] });
+  }
+
+  async findAllChannel() {
+    return this.youtubeRepository.find({ relations: ["account"] });
+  }
+
   async saveChannel(payload: YoutubeChannelDTO) {
     const account = await this.accountService.findOne(payload.accountId);
     return this.youtubeRepository.save({ ...payload, account });
   }
 
-  findAllChannel() {
-    return this.youtubeRepository.find({ relations: ["account"] });
-  }
-
-  findOneChannel(id: number) {
-    return this.youtubeRepository.findOne(id, { relations: ["account"] });
+  async deleteChannel(id: number) {
+    const targetChannel = await this.findOneChannel(id);
+    await this.youtubeRepository.delete(id);
+    return targetChannel;
   }
 }

@@ -26,14 +26,15 @@ type AccountModel {
 }
 
 type Query {
-  account(id: Float!): AccountModel!
+  account(id: Float!): AccountModel
   accounts: [AccountModel!]!
-  youtubeChannel(id: Float!): YoutubeChannelModel!
+  youtubeChannel(id: Float!): YoutubeChannelModel
   youtubeChannels: [YoutubeChannelModel!]!
 }
 
 type Mutation {
   saveAccount(account: AccountDTO!): AccountModel!
+  deleteYoutubeChannel(id: Float!): YoutubeChannelModel
   saveYoutubeChannel(youtubeChannel: YoutubeChannelDTO!): YoutubeChannelModel!
 }
 

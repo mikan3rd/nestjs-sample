@@ -12,15 +12,21 @@ export class AccountService {
     private accountRepository: Repository<AccountModel>,
   ) {}
 
-  save(payload: AccountDTO) {
-    return this.accountRepository.save({ ...payload });
+  async findOne(id: number) {
+    return this.accountRepository.findOne(id, { relations: ["youtubeChannels"] });
   }
 
-  findAll() {
+  async findAll() {
     return this.accountRepository.find({ relations: ["youtubeChannels"] });
   }
 
-  findOne(id: number) {
-    return this.accountRepository.findOne(id, { relations: ["youtubeChannels"] });
+  async save(payload: AccountDTO) {
+    return this.accountRepository.save({ ...payload });
+  }
+
+  async delete(id: number) {
+    const target = await this.findOne(id);
+    await this.accountRepository.delete(id);
+    return target;
   }
 }
