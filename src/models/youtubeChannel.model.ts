@@ -1,18 +1,15 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, UpdateDateColumn } from "typeorm";
 
 import { AccountModel } from "./account.model";
+import { YoutubeVideoModel } from "./youtubeVideo.model";
 
 @ObjectType()
 @Entity("youtubeChannels")
 export class YoutubeChannelModel {
   @Field()
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Field()
-  @Column({ unique: true })
-  channelId: string;
+  @Column({ primary: true })
+  serviceId: string;
 
   @Field()
   @CreateDateColumn()
@@ -23,6 +20,14 @@ export class YoutubeChannelModel {
   updatedAt: Date;
 
   @Field((type) => AccountModel)
-  @ManyToOne((type) => AccountModel, (account) => account.youtubeChannels, { nullable: false })
+  @ManyToOne((type) => AccountModel, (account) => account.youtubeChannels, {
+    nullable: false,
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   account: AccountModel;
+
+  @Field((type) => [YoutubeVideoModel], { defaultValue: [] })
+  @OneToMany((type) => YoutubeVideoModel, (youtubeVideo) => youtubeVideo.channel)
+  youtubeVideos: YoutubeVideoModel[];
 }

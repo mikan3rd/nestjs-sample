@@ -5,6 +5,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { AccountModel } from "./models/account.model";
 import { YoutubeChannelModel } from "./models/youtubeChannel.model";
+import { YoutubeVideoModel } from "./models/youtubeVideo.model";
 import { AccountModule } from "./modules/account.module";
 import { InstagramModule } from "./modules/instagram.module";
 import { YoutubeModule } from "./modules/youtube.module";
@@ -22,7 +23,7 @@ import { YoutubeModule } from "./modules/youtube.module";
       username: "root",
       password: "",
       database: "nestjs-sample",
-      entities: [AccountModel, YoutubeChannelModel],
+      entities: [AccountModel, YoutubeChannelModel, YoutubeVideoModel],
       synchronize: false,
     }),
     AccountModule,
